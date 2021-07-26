@@ -10,8 +10,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxt/content": "^1.14.0",
+    "@vue/composition-api": "^1.0.4",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "chart.js": "^3.4.1",
     "core-js": "^3.15.1",
+    "express": "^4.17.1",
+    "neat-csv": "^6.0.1",
     "nuxt": "^2.15.7",
+    "vue-chart-3": "^0.4.8",
+    "vue-property-decorator": "^9.1.2",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {

@@ -1,67 +1,75 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from "vuetify/es5/util/colors";
 
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    titleTemplate: '%s - malaysia-vaccination-graph',
-    title: 'malaysia-vaccination-graph',
-    htmlAttrs: {
-      lang: 'en'
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
-  },
+	// Global page headers: https://go.nuxtjs.dev/config-head
+	head: {
+		// titleTemplate: '%s - malaysia-vaccination-graph',
+		title: process.env.PROJECT_NAME || "Malaysia Vaccination Graph",
+		htmlAttrs: {
+			lang: "en",
+		},
+		meta: [
+			{ charset: "utf-8" },
+			{
+				name: "viewport",
+				content: "width=device-width, initial-scale=1",
+			},
+			{
+				hid: "description",
+				name: "description",
+				content: "Visualizing data from CITF open data",
+			},
+			{ name: "format-detection", content: "telephone=no" },
+		],
+		link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+	},
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+	serverMiddleware: [
+		{ path: "/api", handler: "~/server-middleware/index.ts" },
+	],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+	// Global CSS: https://go.nuxtjs.dev/config-css
+	css: ["@/assets/common.scss"],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+	plugins: [{ src: "~/plugins/chartjs.js", ssr: false }],
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
-    // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
-  ],
+	// Auto import components: https://go.nuxtjs.dev/config-components
+	components: true,
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-  ],
+	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+	buildModules: [
+		// https://go.nuxtjs.dev/typescript
+		"@nuxt/typescript-build",
+		// https://go.nuxtjs.dev/vuetify
+		"@nuxtjs/vuetify",
+	],
 
-  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
-  },
+	// Modules: https://go.nuxtjs.dev/config-modules
+	modules: ["@nuxt/content"],
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
-}
+	// Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
+	vuetify: {
+		customVariables: ["~/assets/variables.scss"],
+		theme: {
+			dark: true,
+			themes: {
+				dark: {
+					primary: colors.blue.darken2,
+					accent: colors.grey.darken3,
+					secondary: colors.amber.darken3,
+					info: colors.teal.lighten1,
+					warning: colors.amber.base,
+					error: colors.deepOrange.accent4,
+					success: colors.green.accent3,
+				},
+			},
+		},
+	},
+
+	// Build Configuration: https://go.nuxtjs.dev/config-build
+	build: {},
+	env: {
+		projectName: process.env.PROJECT_NAME || "Malaysia Vaccination Graph",
+	},
+};

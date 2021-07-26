@@ -16,3 +16,9 @@
 		font-size: 12px !important;
 	}
 }
+
+.container {
+	max-width: calc(100vw - 3rem) !important;
+	margin: 0 1rem !important;
+	padding: 0 !important;
+}

@@ -6,6 +6,8 @@
 			:clipped="clipped"
 			fixed
 			app
+			width="150"
+			:disable-resize-watcher="disableResizeWatcher"
 		>
 			<v-list>
 				<v-list-item
@@ -62,7 +64,8 @@ export default {
 			miniVariant: false,
 			right: true,
 			rightDrawer: false,
-			title: process.env.projectName
+			title: process.env.projectName,
+			disableResizeWatcher: true
 		}
 	}
 }

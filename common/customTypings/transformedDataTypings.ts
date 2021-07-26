@@ -1,3 +1,8 @@
+export enum TotalVaccinatedChartVariants {
+	CUMULATIVE_VACCINATED = "Cumulative vaccinated",
+	DAILY_VACCINATED = "Daily vaccinated",
+}
+
 export enum PopulationChartVariants {
 	STATES_AND_AGE_GROUP = "Population distribution by states and age groups",
 	AGE_GROUP = "Population distribution by age groups",

@@ -3,11 +3,13 @@ import {
 	DataSourceType,
 	MalaysiaState,
 	PopulationType,
+	TotalVaccinatedType,
 } from "~/common/customTypings/rawDataTypings";
 import { ChartData } from "chart.js";
 import {
 	AgeGroupLabels,
 	PopulationChartVariants,
+	TotalVaccinatedChartVariants,
 } from "~/common/customTypings";
 
 export const transformRawData = (
@@ -15,9 +17,64 @@ export const transformRawData = (
 	rawData: CompositeRawDataType[]
 ) => {
 	switch (type) {
+		case DataSourceType.TOTAL_VACCINATED:
+			return transformTotalVaccinatedRawData(
+				rawData as TotalVaccinatedType[]
+			);
 		case DataSourceType.POPULATION:
 			return transformPopulationRawData(rawData as PopulationType[]);
 	}
+};
+
+const transformTotalVaccinatedRawData = (
+	rawData: TotalVaccinatedType[]
+): Map<string, ChartData> => {
+	return new Map<string, ChartData>([
+		[
+			TotalVaccinatedChartVariants.CUMULATIVE_VACCINATED,
+			{
+				labels: rawData.map(data => data.date),
+				datasets: [
+					{
+						label: "Dose 1 Cumulative",
+						data: rawData.map(data => data.dose1_cumul),
+						backgroundColor: "#90caf9",
+						borderColor: "#5c6bc0",
+						tension: 0.1,
+					},
+					{
+						label: "Dose 2 Cumulative",
+						data: rawData.map(data => data.dose2_cumul),
+						backgroundColor: "#dcedc8",
+						borderColor: "#dcedc8",
+						tension: 0.1,
+					},
+				],
+			},
+		],
+		[
+			TotalVaccinatedChartVariants.DAILY_VACCINATED,
+			{
+				labels: rawData.map(data => data.date),
+				datasets: [
+					{
+						label: "Dose 1 Daily",
+						data: rawData.map(data => data.dose1_daily),
+						backgroundColor: "#90caf9",
+						borderColor: "#5c6bc0",
+						tension: 0.1,
+					},
+					{
+						label: "Dose 2 Daily",
+						data: rawData.map(data => data.dose2_daily),
+						backgroundColor: "#dcedc8",
+						borderColor: "#dcedc8",
+						tension: 0.1,
+					},
+				],
+			},
+		],
+	]);
 };
 
 const transformPopulationRawData = (

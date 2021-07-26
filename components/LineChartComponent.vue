@@ -1,11 +1,15 @@
 <template>
-	<LineChart :chartData="testData" />
+	<div>
+		<v-select height="36" :items="items" :value="items[0]" v-on:change="updateChart"></v-select>
+		<LineChart :chartData="currentDataset" :options="options" style="height: calc(100vh - 160px)" />
+	</div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { LineChart } from "vue-chart-3";
 import { ChartData } from "chart.js";
+import { TotalVaccinatedChartVariants } from "~/common/customTypings";
 
 @Component({
 	components: {
@@ -13,22 +17,17 @@ import { ChartData } from "chart.js";
 	}
 })
 export default class LineChartComponent extends Vue {
-
-	private testData = {
-		labels: ["Paris", "Nîmes", "Toulon", "Perpignan", "Autre"],
-		datasets: [
-			{
-				data: [30, 40, 60, 70, 5],
-				backgroundColor: ["#77CEFF", "#0079AF", "#123E6B", "#97B0C4", "#A5C8ED"]
-			}
-		]
-	};
-
 	@Prop()
 	private data!: Map<string, ChartData>;
+	private currentDataset = this.data.get(TotalVaccinatedChartVariants.CUMULATIVE_VACCINATED);
+	private items: string[] = Object.values(TotalVaccinatedChartVariants);
 
-	mounted() {
-		console.log("data in linechart component: ", this.data);
+	private options = {
+		maintainAspectRatio: false,
+	}
+
+	private updateChart(value: string) {
+		this.currentDataset = this.data.get(value);
 	}
 }
 </script>

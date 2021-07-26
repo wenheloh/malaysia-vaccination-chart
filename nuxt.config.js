@@ -71,5 +71,6 @@ export default {
 	build: {},
 	env: {
 		projectName: process.env.PROJECT_NAME || "Malaysia Vaccination Graph",
+		baseUrl: process.env.API_BASE_URL || "http://localhost:3000/api",
 	},
 };

@@ -10,12 +10,17 @@ import { Component, Vue } from "vue-property-decorator";
 import { CompositeRawDataType, DataSourceType } from "~/common/customTypings/rawDataTypings";
 import { transformRawData } from "~/common/transformers";
 import { ChartData } from "chart.js";
+import axios from "axios";
 
 @Component({
-	async asyncData({ params, redirect, $content }) {
+	async asyncData({ params, redirect }) {
 		try {
-			const type = (params?.chart?.toUpperCase().split("-").join("_") ?? "TOTAL_VACCINATED") as DataSourceType;
-			const { body: rawData }: { body: CompositeRawDataType[] } = await $content(type).fetch();
+			const type = (params?.chart ?? "total-vaccinated") as DataSourceType;
+			const { data: { data: rawData } }: { data: { data:  CompositeRawDataType[] } } = await axios({
+				baseURL: process.env.baseUrl,
+				url: `/data/${type}`,
+				method: "GET"
+			})
 			const transformedData = transformRawData(type, rawData);
 
 			return { type, data: transformedData };

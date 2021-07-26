@@ -15,9 +15,6 @@
 					router
 					exact
 				>
-					<v-list-item-action>
-						<v-icon>{{ item.icon }}</v-icon>
-					</v-list-item-action>
 					<v-list-item-content>
 						<v-list-item-title v-text="item.title"/>
 					</v-list-item-content>
@@ -43,30 +40,25 @@
 			app
 		>
 			<span>&copy; {{ new Date().getFullYear() }}</span>&nbsp;&nbsp;-&nbsp;&nbsp;
-			<span>Public data from <a href="https://github.com/CITF-Malaysia/citf-public" target="_blank" title="CITF-Malaysia">CITF-Malaysia</a></span>
+			<span>Public data from <a href="https://github.com/CITF-Malaysia/citf-public" target="_blank"
+									  title="CITF-Malaysia">CITF-Malaysia</a></span>
 		</v-footer>
 	</v-app>
 </template>
 
 <script>
+import { DataSourceType } from "@/common/customTypings";
+
 export default {
 	data() {
 		return {
 			clipped: false,
 			drawer: false,
 			fixed: false,
-			items: [
-				{
-					icon: 'mdi-apps',
-					title: 'Welcome',
-					to: '/'
-				},
-				{
-					icon: 'mdi-chart-bubble',
-					title: 'Inspire',
-					to: '/inspire'
-				}
-			],
+			items: Object.keys(DataSourceType).map(key => ({
+				title: key.toLowerCase().split("_").reduce((result, current) => result += `${current.charAt(0).toUpperCase()}${current.substring(1)} `, "").trim(),
+				to: DataSourceType[key]
+			})),
 			miniVariant: false,
 			right: true,
 			rightDrawer: false,

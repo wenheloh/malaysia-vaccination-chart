@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import neatCsv from "neat-csv";
 import axios from "axios";
-import { DataSourceType } from "~/common/customTypings/rawDataTypings";
+import { DataSourceType } from "../../common/customTypings";
 
 const dataSourceUrl = {
 	[DataSourceType.POPULATION]:
@@ -19,7 +19,12 @@ const dataSourceUrl = {
 export default class DataService {
 	public async getData(type: DataSourceType) {
 		try {
-			const data = await fs.readFile(`./content/${type}.csv`);
+			const url = dataSourceUrl[type];
+			const { data } = await axios({
+				method: "GET",
+				url,
+				responseType: "text",
+			});
 			return await neatCsv(data);
 		} catch (error) {
 			console.log("error: ", error);

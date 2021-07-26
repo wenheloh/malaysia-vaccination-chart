@@ -1,9 +1,9 @@
 export enum DataSourceType {
-	POPULATION = "POPULATION",
-	TOTAL_VACCINATED = "TOTAL_VACCINATED",
-	VACCINATED_BY_STATE = "VACCINATED_BY_STATE",
-	TOTAL_REGISTERED = "TOTAL_REGISTERED",
-	REGISTERED_BY_STATE = "REGISTERED_BY_STATE",
+	TOTAL_VACCINATED = "total-vaccinated",
+	VACCINATED_BY_STATE = "vaccinated-by-state",
+	POPULATION = "population",
+	TOTAL_REGISTERED = "total-registered",
+	REGISTERED_BY_STATE = "registered-by-state",
 }
 
 export enum MalaysiaState {

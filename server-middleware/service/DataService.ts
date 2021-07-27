@@ -1,4 +1,3 @@
-import { promises as fs } from "fs";
 import neatCsv from "neat-csv";
 import axios from "axios";
 import { DataSourceType } from "../../common/customTypings";
@@ -30,22 +29,5 @@ export default class DataService {
 			console.error("API server error: ", error);
 			return "";
 		}
-	}
-
-	public async updateData() {
-		await Promise.all(
-			Object.keys(dataSourceUrl).map(async key => {
-				const url = dataSourceUrl[(key as unknown) as DataSourceType];
-
-				const { data } = await axios({
-					method: "GET",
-					url,
-					responseType: "text",
-				});
-				await fs.writeFile(`./content/${key}.csv`, data);
-			})
-		);
-
-		return;
 	}
 }

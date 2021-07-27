@@ -14,16 +14,4 @@ app.get("/data/:typeOfChart", async (req, res) => {
 	res.json({ data });
 });
 
-app.post("/data", async (req, res) => {
-	const dataService = new DataService();
-	try {
-		await dataService.updateData();
-		res.status(204);
-		res.send();
-	} catch (error) {
-		res.status(500);
-		res.send({ error });
-	}
-});
-
 module.exports = app;

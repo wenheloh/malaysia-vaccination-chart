@@ -27,7 +27,7 @@ export default class DataService {
 			});
 			return await neatCsv(data);
 		} catch (error) {
-			console.log("error: ", error);
+			console.error("API server error: ", error);
 			return "";
 		}
 	}

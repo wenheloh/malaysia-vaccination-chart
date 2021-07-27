@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<LineChartComponent v-if="showLineGraph" :data="data"/>
-		<PopulationChart v-if="!showLineGraph" :data="data"/>
+		<TotalVaccinatedChart v-if="showLineGraph" :data="data" />
+		<PopulationChart v-if="!showLineGraph" :data="data" />
 	</div>
 </template>
 
@@ -21,11 +21,19 @@ import axios from "axios";
 				url: `/data/${type}`,
 				method: "GET"
 			})
-			const transformedData = transformRawData(type, rawData);
+
+			// Always get total population data as it is being used in different charts
+			const { data: { data: populationData } }: { data: { data:  CompositeRawDataType[] } } = await axios({
+				baseURL: process.env.baseUrl,
+				url: `/data/${DataSourceType.POPULATION}`,
+				method: "GET"
+			})
+
+			const transformedData = transformRawData(type, rawData, { populationData });
 
 			return { type, data: transformedData };
 		} catch (error) {
-			console.log("error: ", error);
+			console.error("asyncData error: ", error);
 			redirect("/error");
 		}
 	}

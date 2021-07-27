@@ -14,12 +14,14 @@ import {
 
 export const transformRawData = (
 	type: DataSourceType,
-	rawData: CompositeRawDataType[]
+	rawData: CompositeRawDataType[],
+	payload?: any
 ) => {
 	switch (type) {
 		case DataSourceType.TOTAL_VACCINATED:
 			return transformTotalVaccinatedRawData(
-				rawData as TotalVaccinatedType[]
+				rawData as TotalVaccinatedType[],
+				payload
 			);
 		case DataSourceType.POPULATION:
 			return transformPopulationRawData(rawData as PopulationType[]);
@@ -27,8 +29,25 @@ export const transformRawData = (
 };
 
 const transformTotalVaccinatedRawData = (
-	rawData: TotalVaccinatedType[]
+	rawData: TotalVaccinatedType[],
+	{ populationData }: { populationData: PopulationType[] }
 ): Map<string, ChartData> => {
+	const getVaccinatedPercentage = (numerator: string) => {
+		const cumulativeVaccinated = parseInt(numerator);
+		const totalPopulation = parseInt(
+			populationData.find(data => data.idxs === "0")?.pop ?? "0"
+		);
+
+		// impossible to happen but Typescript is complaining 🤷
+		if (totalPopulation === 0) {
+			return 0.0;
+		}
+
+		return parseFloat(
+			((cumulativeVaccinated / totalPopulation) * 100).toFixed(2)
+		);
+	};
+
 	return new Map<string, ChartData>([
 		[
 			TotalVaccinatedChartVariants.CUMULATIVE_VACCINATED,
@@ -37,20 +56,20 @@ const transformTotalVaccinatedRawData = (
 				datasets: [
 					{
 						label: "Dose 1 Cumulative",
-						data: rawData.map(data => data.dose1_cumul),
+						data: rawData.map(data => parseInt(data.dose1_cumul)),
 						backgroundColor: "#90caf9",
 						borderColor: "#5c6bc0",
 						tension: 0.1,
 					},
 					{
 						label: "Dose 2 Cumulative",
-						data: rawData.map(data => data.dose2_cumul),
+						data: rawData.map(data => parseInt(data.dose2_cumul)),
 						backgroundColor: "#dcedc8",
 						borderColor: "#dcedc8",
 						tension: 0.1,
 					},
 				],
-			},
+			} as ChartData<"line">,
 		],
 		[
 			TotalVaccinatedChartVariants.DAILY_VACCINATED,
@@ -59,20 +78,43 @@ const transformTotalVaccinatedRawData = (
 				datasets: [
 					{
 						label: "Dose 1 Daily",
-						data: rawData.map(data => data.dose1_daily),
+						data: rawData.map(data => parseInt(data.dose1_daily)),
 						backgroundColor: "#90caf9",
 						borderColor: "#5c6bc0",
 						tension: 0.1,
 					},
 					{
 						label: "Dose 2 Daily",
-						data: rawData.map(data => data.dose2_daily),
+						data: rawData.map(data => parseInt(data.dose2_daily)),
 						backgroundColor: "#dcedc8",
 						borderColor: "#dcedc8",
 						tension: 0.1,
 					},
 				],
-			},
+			} as ChartData<"line">,
+		],
+		[
+			TotalVaccinatedChartVariants.VACCINATED_POPULATION,
+			{
+				labels: [
+					"Population with at least 1 dose",
+					"Fully vaccinated population",
+				],
+				datasets: [
+					{
+						data: [
+							getVaccinatedPercentage(
+								rawData[rawData.length - 1].dose1_cumul
+							),
+							getVaccinatedPercentage(
+								rawData[rawData.length - 1].dose2_cumul
+							),
+						],
+						backgroundColor: ["#90caf9", "#dcedc8"],
+						borderColor: ["#5c6bc0", "#dcedc8"],
+					},
+				],
+			} as ChartData<"bar">,
 		],
 	]);
 };
@@ -121,7 +163,7 @@ const transformPopulationRawData = (
 						borderColor: "#f06292",
 					},
 				],
-			},
+			} as ChartData<"bar">,
 		],
 		[
 			PopulationChartVariants.STATES,
@@ -152,7 +194,7 @@ const transformPopulationRawData = (
 						],
 					},
 				],
-			},
+			} as ChartData<"pie">,
 		],
 		[
 			PopulationChartVariants.AGE_GROUP,
@@ -177,7 +219,7 @@ const transformPopulationRawData = (
 						backgroundColor: ["#dcedc8", "#90caf9", "#ef9a9a"],
 					},
 				],
-			},
+			} as ChartData<"pie">,
 		],
 	]);
 };

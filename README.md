@@ -1,5 +1,8 @@
 # malaysia-vaccination-graph
 
+## Hosting
+Currently hosted at https://malaysia-vaccination-chart.web.app
+
 ## Build Setup
 
 ```bash

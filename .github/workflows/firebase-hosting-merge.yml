@@ -25,5 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: install firebase
         run: npm i firebase-tools -g
+      - name: Inject environmental variables
+        run: firebase functions:config:set ssrapp.api_base_url="https://malaysia-vaccination-chart.web.app/api" && firebase functions:config:set ssrapp.google_map_api_key="${{ secrets.GOOGLE_MAP_API_KEY }}"
       - name: deploy
         run: firebase deploy --token ${{ secrets.GCLOUD_TOKEN }}

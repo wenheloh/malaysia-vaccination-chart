@@ -1,5 +1,11 @@
 const colors = require("vuetify/es5/util/colors").default;
 
+// Fetch injected environmental variable
+const functions = require("firebase-functions");
+const firebaseConfig = functions.config();
+process.env.API_BASE_URL = firebaseConfig.ssrapp.api_base_url || "http://localhost:3000/api";
+process.env.GOOGLE_MAP_API_KEY = firebaseConfig.ssrapp.google_map_api_key || "";
+
 module.exports = {
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {

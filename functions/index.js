@@ -14,6 +14,12 @@ const firebaseConfig = functions.config();
 process.env.API_BASE_URL = firebaseConfig.ssrapp.api_base_url;
 process.env.GOOGLE_MAP_API_KEY = firebaseConfig.ssrapp.google_map_api_key;
 
+console.log("🙂 process.env.API_BASE_URL: ", process.env.API_BASE_URL);
+console.log(
+    "🙂 process.env.GOOGLE_MAP_API_KEY: ",
+    process.env.GOOGLE_MAP_API_KEY,
+);
+
 const nuxtConfig = require("./nuxt.config.js");
 const config = {
   ...nuxtConfig,

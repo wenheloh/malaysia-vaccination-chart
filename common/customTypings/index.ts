@@ -1,3 +1,4 @@
 export * from "./rawDataTypings";
 export * from "./transformedDataTypings";
-export * from "./vuexTypings";
+export { MalaysiaState } from "~/common/customTypings/enums";
+export { DataSourceType } from "~/common/customTypings/enums";

@@ -1,30 +1,14 @@
 import {
-	PopulationType,
+	IPopulationType,
 	TotalVaccinatedChartVariants,
-	TotalVaccinatedType,
+	ITotalVaccinatedType,
 } from "~/common/customTypings";
 import { ChartData } from "chart.js";
 
 export const transformTotalVaccinatedRawData = (
-	rawData: TotalVaccinatedType[],
-	{ populationData }: { populationData: PopulationType[] }
+	rawData: ITotalVaccinatedType[],
+	{ populationData }: { populationData: IPopulationType[] }
 ): Map<string, ChartData> => {
-	const getVaccinatedPercentage = (numerator: string) => {
-		const cumulativeVaccinated = parseInt(numerator);
-		const totalPopulation = parseInt(
-			populationData.find(data => data.idxs === "0")?.pop ?? "0"
-		);
-
-		// impossible to happen but Typescript is complaining 🤷
-		if (totalPopulation === 0) {
-			return 0.0;
-		}
-
-		return parseFloat(
-			((cumulativeVaccinated / totalPopulation) * 100).toFixed(2)
-		);
-	};
-
 	return new Map<string, ChartData>([
 		[
 			TotalVaccinatedChartVariants.CUMULATIVE_VACCINATED,
@@ -81,9 +65,11 @@ export const transformTotalVaccinatedRawData = (
 					{
 						data: [
 							getVaccinatedPercentage(
+								populationData,
 								rawData[rawData.length - 1].dose1_cumul
 							),
 							getVaccinatedPercentage(
+								populationData,
 								rawData[rawData.length - 1].dose2_cumul
 							),
 						],
@@ -94,4 +80,23 @@ export const transformTotalVaccinatedRawData = (
 			} as ChartData<"bar">,
 		],
 	]);
+};
+
+const getVaccinatedPercentage = (
+	populationData: IPopulationType[],
+	numerator: string
+) => {
+	const cumulativeVaccinated = parseInt(numerator);
+	const totalPopulation = parseInt(
+		populationData.find(data => data.idxs === "0")?.pop ?? "0"
+	);
+
+	// impossible to happen but Typescript is complaining 🤷
+	if (totalPopulation === 0) {
+		return 0.0;
+	}
+
+	return parseFloat(
+		((cumulativeVaccinated / totalPopulation) * 100).toFixed(2)
+	);
 };

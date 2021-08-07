@@ -2,12 +2,12 @@ import {
 	AgeGroupLabels,
 	MalaysiaState,
 	PopulationChartVariants,
-	PopulationType,
+	IPopulationType,
 } from "~/common/customTypings";
 import { ChartData } from "chart.js";
 
 export const transformPopulationRawData = (
-	rawData: PopulationType[]
+	rawData: IPopulationType[]
 ): Map<string, ChartData> => {
 	// TODO: probably can refactor to be inline?
 	const data = Object.values(MalaysiaState).map(state => {

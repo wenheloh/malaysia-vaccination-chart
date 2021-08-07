@@ -25,14 +25,17 @@ export default {
 	},
 
 	serverMiddleware: [
-		{ path: "/api", handler: "~/server-middleware/index.ts" },
+		{ path: "/api", handler: "~/server-middleware/server.ts" },
 	],
 
 	// Global CSS: https://go.nuxtjs.dev/config-css
 	css: ["@/assets/common.scss"],
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-	plugins: [{ src: "~/plugins/chartjs.js", ssr: false }],
+	plugins: [
+		{ src: "~/plugins/chartjs.js", ssr: false },
+		{ src: "~/plugins/GChart.js", ssr: false },
+	],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
@@ -71,6 +74,7 @@ export default {
 	build: {},
 	env: {
 		projectName: process.env.PROJECT_NAME || "Malaysia Vaccination Graph",
-		baseUrl: process.env.API_BASE_URL || "http://localhost:3000/api",
+		apiBaseUrl: process.env.API_BASE_URL || "http://localhost:3000/api",
+		googleMapKey: process.env.GOOGLE_MAP_API_KEY || "",
 	},
 };

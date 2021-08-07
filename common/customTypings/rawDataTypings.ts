@@ -1,31 +1,6 @@
-export enum DataSourceType {
-	TOTAL_VACCINATED = "total-vaccinated",
-	VACCINATED_BY_STATE = "vaccinated-by-state",
-	POPULATION = "population",
-	TOTAL_REGISTERED = "total-registered",
-	REGISTERED_BY_STATE = "registered-by-state",
-}
+import { MalaysiaState } from "~/common/customTypings/enums";
 
-export enum MalaysiaState {
-	JOHOR = "Johor",
-	KEDAH = "Kedah",
-	KELANTAN = "Kelantan",
-	MELAKA = "Melaka",
-	NEGERI_SEMBILAN = "Negeri Sembilan",
-	PAHANG = "Pahang",
-	PERAK = "Perak",
-	PERLIS = "Perlis",
-	PULAU_PINANG = "Pulau Pinang",
-	SABAH = "Sabah",
-	SARAWAK = "Sarawak",
-	SELANGOR = "Selangor",
-	TERENGGANU = "Terengganu",
-	WP_KUALA_LUMPUR = "W.P. Kuala Lumpur",
-	WP_LABUAN = "W.P. Labuan",
-	WP_PUTRAJAYA = "W.P. Putrajaya",
-}
-
-export interface PopulationType {
+export interface IPopulationType {
 	idxs: string;
 	state: string;
 	pop: string;
@@ -33,7 +8,7 @@ export interface PopulationType {
 	pop_60: string;
 }
 
-export interface TotalVaccinatedType {
+export interface ITotalVaccinatedType {
 	date: string;
 	dose1_daily: string;
 	dose2_daily: string;
@@ -43,7 +18,7 @@ export interface TotalVaccinatedType {
 	total_cumul: string;
 }
 
-export interface VaccinatedByState extends TotalVaccinatedType {
+export interface IVaccinatedByStateType extends ITotalVaccinatedType {
 	state: MalaysiaState;
 }
 
@@ -52,7 +27,7 @@ export interface VaccinatedByState extends TotalVaccinatedType {
  *  call: Number of individuals registered via the call centre, who do not have an existing registration via MySejahtera
  *  web: Number of individuals registered via the website (including on-behalf-of registrations done during outreach) who do not have an existing registration via MySejahtera or the call centre
  * */
-export interface TotalRegisteredType {
+export interface ITotalRegisteredType {
 	date: string;
 	state: string;
 	total: string;
@@ -66,13 +41,13 @@ export interface TotalRegisteredType {
 	oku: string;
 }
 
-export interface RegisteredByState extends TotalRegisteredType {
+export interface IRegisteredByStateType extends ITotalRegisteredType {
 	state: MalaysiaState;
 }
 
 export type CompositeRawDataType =
-	| PopulationType
-	| TotalVaccinatedType
-	| VaccinatedByState
-	| TotalRegisteredType
-	| RegisteredByState;
+	| IPopulationType
+	| ITotalVaccinatedType
+	| IVaccinatedByStateType
+	| ITotalRegisteredType
+	| IRegisteredByStateType;

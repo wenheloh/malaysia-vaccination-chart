@@ -1,4 +1,4 @@
-# malaysia-vaccination-graph
+# malaysia-vaccination-chart
 
 ## Hosting
 Currently hosted at https://malaysia-vaccination-chart.web.app

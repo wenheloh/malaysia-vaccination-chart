@@ -7,6 +7,7 @@
 </template>
 
 <script lang="ts">
+import { Context } from "@nuxt/types";
 import { Component, Vue } from "vue-property-decorator";
 import { CompositeRawDataType} from "~/common/custom-typings/rawDataTypings";
 import { transformRawData } from "~/common/data-transformers";
@@ -25,7 +26,7 @@ const fetchData = async (type: DataSourceType): Promise<CompositeRawDataType[]> 
 }
 
 @Component({
-	async asyncData({ params, redirect }) {
+	async asyncData({ params, redirect }: Context) {
 		try {
 			if (!!params.chart && !Object.values(DataSourceType).includes(params.chart as DataSourceType) && params.chart !== "error") {
 				redirect("/error");

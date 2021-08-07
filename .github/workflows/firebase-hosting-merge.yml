@@ -23,8 +23,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install libraries
-        run: npm --prefix functions ci
       - name: install firebase
         run: npm i firebase-tools -g
       - name: deploy

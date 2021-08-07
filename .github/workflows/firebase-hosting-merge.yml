@@ -14,19 +14,21 @@ jobs:
       matrix:
         node-version: [12]
 
+    env:
+      API_BASE_URL: https://malaysia-vaccination-chart.web.app/api
+      GOOGLE_MAP_API_KEY: ${{ secrets.GOOGLE_MAP_API_KEY }}
+
     steps:
       - uses: actions/checkout@v2
-      - name: install firebase
-        run: npm i firebase-tools -g
-      - name: Inject environmental variables
-        run: firebase functions:config:set ssrapp.api_base_url="https://malaysia-vaccination-chart.web.app/api" ssrapp.google_map_api_key="${{ secrets.GOOGLE_MAP_API_KEY }}" --token ${{ secrets.GCLOUD_TOKEN }}
-      - name: Clean up any previous build files
-        run: rm -rf node_modules && rm -rf .nuxt && npm cache clean --force
       - name: Prepare artifact
         run: npm ci && npm run test && npm run build
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: install firebase
+        run: npm i firebase-tools -g
+      - name: Inject environmental variables for Firebase Cloud Functions
+        run: firebase functions:config:set ssrapp.api_base_url="https://malaysia-vaccination-chart.web.app/api" ssrapp.google_map_api_key="${{ secrets.GOOGLE_MAP_API_KEY }}" --token ${{ secrets.GCLOUD_TOKEN }}
       - name: deploy
         run: firebase deploy --token ${{ secrets.GCLOUD_TOKEN }}

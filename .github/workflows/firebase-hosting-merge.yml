@@ -20,9 +20,10 @@ jobs:
         run: npm i firebase-tools -g
       - name: Inject environmental variables
         run: firebase functions:config:set ssrapp.api_base_url="https://malaysia-vaccination-chart.web.app/api" ssrapp.google_map_api_key="${{ secrets.GOOGLE_MAP_API_KEY }}" --token ${{ secrets.GCLOUD_TOKEN }}
-      - run: npm ci
-      - run: npm run test
-      - run: npm run build
+      - name: Clean up any previous build files
+        run: rm -rf node_modules && rm -rf .nuxt && npm cache clean --force
+      - name: Prepare artifact
+        run: npm ci && npm run test && npm run build
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:

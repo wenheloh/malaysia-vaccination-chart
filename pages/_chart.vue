@@ -62,15 +62,15 @@ export default class Home extends Vue {
 	private showTotalVaccinatedChart = false;
 	private showVaccinatedByStateChart = false;
 	private showPopulationChart = false;
-	private showTotalRegisteredChart = false;
-	private showRegisteredByStateChart = false;
+	// private showTotalRegisteredChart = false;
+	// private showRegisteredByStateChart = false;
 
 	mounted() {
 		this.showTotalVaccinatedChart = this.type === DataSourceType.TOTAL_VACCINATED;
 		this.showVaccinatedByStateChart = this.type === DataSourceType.VACCINATED_BY_STATE;
 		this.showPopulationChart = this.type === DataSourceType.POPULATION;
-		this.showTotalRegisteredChart = this.type === DataSourceType.TOTAL_REGISTERED;
-		this.showRegisteredByStateChart = this.type === DataSourceType.REGISTERED_BY_STATE;
+		// this.showTotalRegisteredChart = this.type === DataSourceType.TOTAL_REGISTERED;
+		// this.showRegisteredByStateChart = this.type === DataSourceType.REGISTERED_BY_STATE;
 	}
 }
 </script>

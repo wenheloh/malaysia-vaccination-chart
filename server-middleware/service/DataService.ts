@@ -9,10 +9,10 @@ const dataSourceUrl = {
 		"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/vaccination/vax_malaysia.csv",
 	[DataSourceType.VACCINATED_BY_STATE]:
 		"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/vaccination/vax_state.csv",
-	[DataSourceType.TOTAL_REGISTERED]:
-		"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/registration/vaxreg_malaysia.csv",
-	[DataSourceType.REGISTERED_BY_STATE]:
-		"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/registration/vaxreg_state.csv",
+	// [DataSourceType.TOTAL_REGISTERED]:
+	// 	"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/registration/vaxreg_malaysia.csv",
+	// [DataSourceType.REGISTERED_BY_STATE]:
+	// 	"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/registration/vaxreg_state.csv",
 };
 
 export default class DataService {

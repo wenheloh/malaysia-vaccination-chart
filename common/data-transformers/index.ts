@@ -5,8 +5,8 @@ import {
 	ITotalVaccinatedType,
 	IVaccinatedByStateType,
 } from "~/common/custom-typings";
-import { transformTotalVaccinatedRawData } from "~/common/data-transformers/total-vaccinated-data-transformer";
 import { transformPopulationRawData } from "~/common/data-transformers/population-data-transformer";
+import { transformTotalVaccinatedRawData } from "~/common/data-transformers/total-vaccinated-data-transformer";
 import { transformVaccinatedByStateRawData } from "~/common/data-transformers/vaccinated-by-state-data-transformer";
 
 export const transformRawData = (

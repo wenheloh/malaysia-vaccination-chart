@@ -9,8 +9,12 @@
 const functions = require("firebase-functions");
 const {Nuxt} = require("nuxt-start");
 
-const nuxtConfig = require("./nuxt.config.js");
+// Fetch injected environmental variable
+const firebaseConfig = functions.config();
+process.env.API_BASE_URL = firebaseConfig.ssrapp.api_base_url;
+process.env.GOOGLE_MAP_API_KEY = firebaseConfig.ssrapp.google_map_api_key;
 
+const nuxtConfig = require("./nuxt.config.js");
 const config = {
   ...nuxtConfig,
   dev: false,

@@ -2,7 +2,7 @@
   "functions": {
     "source": "functions",
     "predeploy": [
-      "npm --prefix functions ci && npm run build && rm -rf functions/nuxt && cp -r .nuxt/ functions/nuxt/ && cp nuxt.config.js functions/ && cp -r server-middleware/ functions/server-middleware/"
+      "npm --prefix functions ci && rm -rf functions/nuxt && rm -rf functions/server-middleware && rm -rf functions/common && npm run build && cp -r .nuxt/ functions/nuxt/ && cp nuxt.config.js functions/ && cp -r server-middleware/ functions/server-middleware/ && cp -r common/ functions/common/"
     ]
   },
   "hosting": {

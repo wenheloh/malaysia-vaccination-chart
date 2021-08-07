@@ -16,8 +16,10 @@ import axios from "axios";
 import { DataSourceType } from "~/common/custom-typings/enums";
 
 const fetchData = async (type: DataSourceType): Promise<CompositeRawDataType[]> => {
+	const baseURL = process.env.apiBaseUrl;
+	console.log("❤️ baseURL when fetching: ", baseURL)
 	const { data: { data: rawData } }: { data: { data: CompositeRawDataType[] } } = await axios({
-		baseURL: process.env.apiBaseUrl,
+		baseURL,
 		url: `/data/${type}`,
 		method: "GET"
 	})

@@ -1,5 +1,6 @@
 {
 	"ssrapp": {
-		"runtime_api_url": "http://localhost:3000"
+		"api_base_url": "http://localhost:5001/api",
+		"google_map_api_key": "AIzaSyCbnmHZqYI4ZCF8ecqX7s47AceLwutx7i8"
 	}
 }

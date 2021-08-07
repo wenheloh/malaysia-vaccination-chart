@@ -1,4 +1,4 @@
-const vuetifyColors = require("vuetify/es5/util/colors");
+const colors = require("vuetify/es5/util/colors").default;
 
 module.exports = {
 	// Global page headers: https://go.nuxtjs.dev/config-head
@@ -58,13 +58,13 @@ module.exports = {
 			dark: true,
 			themes: {
 				dark: {
-					primary: vuetifyColors.colors.blue.darken2,
-					accent: vuetifyColors.colors.grey.darken3,
-					secondary: vuetifyColors.colors.amber.darken3,
-					info: vuetifyColors.colors.teal.lighten1,
-					warning: vuetifyColors.colors.amber.base,
-					error: vuetifyColors.colors.deepOrange.accent4,
-					success: vuetifyColors.colors.green.accent3,
+					primary: colors.blue.darken2,
+					accent: colors.grey.darken3,
+					secondary: colors.amber.darken3,
+					info: colors.teal.lighten1,
+					warning: colors.amber.base,
+					error: colors.deepOrange.accent4,
+					success: colors.green.accent3,
 				},
 			},
 		},

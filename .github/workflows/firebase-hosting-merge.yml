@@ -12,6 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm ci && npm run build
+      - uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: malaysia-vaccination-chart-ssr
+          runtime: nodejs12
+          credentials: '${{ secrets.gcp_credentials }}'
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
 import DataService from "./service/DataService";
-import { DataSourceType } from "~/common/customTypings/enums";
+import { DataSourceType } from "~/common/custom-typings/enums";
 
 const app = express();
 app.use(bodyParser.json());

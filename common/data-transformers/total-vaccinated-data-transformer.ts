@@ -2,7 +2,7 @@ import {
 	IPopulationType,
 	TotalVaccinatedChartVariants,
 	ITotalVaccinatedType,
-} from "~/common/customTypings";
+} from "~/common/custom-typings";
 import { ChartData } from "chart.js";
 
 export const transformTotalVaccinatedRawData = (

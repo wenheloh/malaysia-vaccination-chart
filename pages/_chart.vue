@@ -8,11 +8,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { CompositeRawDataType} from "~/common/customTypings/rawDataTypings";
-import { transformRawData } from "~/common/transformers";
+import { CompositeRawDataType} from "~/common/custom-typings/rawDataTypings";
+import { transformRawData } from "~/common/data-transformers";
 import { ChartData } from "chart.js";
 import axios from "axios";
-import { DataSourceType } from "~/common/customTypings/enums";
+import { DataSourceType } from "~/common/custom-typings/enums";
 
 const fetchData = async (type: DataSourceType): Promise<CompositeRawDataType[]> => {
 	const { data: { data: rawData } }: { data: { data: CompositeRawDataType[] } } = await axios({

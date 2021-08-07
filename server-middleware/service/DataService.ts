@@ -1,6 +1,6 @@
 import neatCsv from "neat-csv";
 import axios from "axios";
-import { DataSourceType } from "../../common/customTypings/enums";
+import { DataSourceType } from "../../common/custom-typings/enums";
 
 const dataSourceUrl = {
 	[DataSourceType.POPULATION]:

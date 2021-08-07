@@ -1,4 +1,4 @@
-import { MalaysiaState } from "~/common/customTypings/enums";
+import { MalaysiaState } from "~/common/custom-typings/enums";
 
 export interface IPopulationType {
 	idxs: string;

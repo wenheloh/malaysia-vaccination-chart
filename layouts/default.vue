@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { DataSourceType } from "@/common/customTypings";
+import { DataSourceType } from "@/common/custom-typings";
 
 export default {
 	data() {

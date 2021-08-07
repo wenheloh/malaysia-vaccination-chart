@@ -9,7 +9,7 @@
 import { ChartData } from "chart.js";
 import { GChart } from "vue-google-charts";
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { VaccinatedByStateChartVariants } from "~/common/customTypings";
+import { VaccinatedByStateChartVariants } from "~/common/custom-typings";
 
 @Component({
 	components: {

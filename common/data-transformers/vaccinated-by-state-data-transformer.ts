@@ -3,8 +3,8 @@ import {
 	IVaccinatedByStateType,
 	MalaysiaState,
 	VaccinatedByStateChartVariants,
-} from "~/common/customTypings";
-import { MalaysiaStateIsoCode } from "~/common/customTypings/enums";
+} from "~/common/custom-typings";
+import { MalaysiaStateIsoCode } from "~/common/custom-typings/enums";
 
 export const transformVaccinatedByStateRawData = (
 	rawData: IVaccinatedByStateType[],

@@ -3,7 +3,7 @@ import {
 	MalaysiaState,
 	PopulationChartVariants,
 	IPopulationType,
-} from "~/common/customTypings";
+} from "~/common/custom-typings";
 import { ChartData } from "chart.js";
 
 export const transformPopulationRawData = (

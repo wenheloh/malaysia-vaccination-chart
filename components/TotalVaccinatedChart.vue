@@ -10,7 +10,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { BarChart, LineChart } from "vue-chart-3";
 import { ChartData } from "chart.js";
-import { TotalVaccinatedChartVariants } from "~/common/customTypings";
+import { TotalVaccinatedChartVariants } from "~/common/custom-typings";
 
 @Component({
 	components: {

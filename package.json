@@ -10,21 +10,22 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"@nuxt/typescript-build": "^2.1.0",
+		"@nuxtjs/vuetify": "^1.12.1",
 		"@vue/composition-api": "^1.0.5",
 		"axios": "^0.21.1",
 		"body-parser": "^1.19.0",
 		"chart.js": "^3.4.1",
 		"core-js": "^3.15.1",
 		"express": "^4.17.1",
+		"firebase-functions": "^3.14.1",
 		"neat-csv": "^6.0.1",
 		"nuxt": "^2.15.7",
 		"vue-chart-3": "^0.4.8",
 		"vue-class-component": "^7.2.6",
 		"vue-google-charts": "^0.3.3",
 		"vue-property-decorator": "^9.1.2",
-		"vuetify": "^2.5.5",
-		"@nuxt/typescript-build": "^2.1.0",
-		"@nuxtjs/vuetify": "^1.12.1"
+		"vuetify": "^2.5.5"
 	},
 	"devDependencies": {
 		"@nuxt/types": "^2.15.7",

@@ -4,4 +4,4 @@ node_modules/
 /nuxt
 /server-middleware
 /common
-/.runtimeconfig.json
+.runtimeconfig.json

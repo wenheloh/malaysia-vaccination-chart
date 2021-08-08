@@ -27,7 +27,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: install firebase
         run: npm i firebase-tools -g
-      - name: Inject environmental variables for Firebase Cloud Functions
-        run: firebase functions:config:set ssrapp.google_map_api_key="${{ secrets.GOOGLE_MAP_API_KEY }}" --token ${{ secrets.GCLOUD_TOKEN }}
       - name: deploy
         run: firebase deploy --token ${{ secrets.GCLOUD_TOKEN }}

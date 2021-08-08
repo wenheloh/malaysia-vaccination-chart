@@ -1,13 +1,19 @@
 {
-  "hosting": {
-    "predeploy": [
-      "npm run generate && rm -rf public/* && cp -r dist/ public/"
-    ],
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+	"hosting": {
+		"predeploy": [
+			"npm run generate && rm -rf public/* && cp -r dist/ public/"
+		],
+		"public": "public",
+		"ignore": [
+			"firebase.json",
+			"**/.*",
+			"**/node_modules/**"
+		],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/200.html"
+			}
+		]
+	}
 }

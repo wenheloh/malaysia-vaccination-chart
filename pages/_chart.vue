@@ -35,14 +35,19 @@ const fetchData = async (type: DataSourceType): Promise<CompositeRawDataType[]> 
 }
 
 @Component({
-	async asyncData({ params, redirect, $content }: Context) {
+	async asyncData({ error, params, $content }: Context) {
 		if (!!params.chart && !Object.values(DataSourceType).includes(params.chart as DataSourceType) && params.chart !== "error") {
-			redirect("/error");
-			return;
+			error({
+				statusCode: 404
+			})
+			return {};
 		}
 
 		if(params.chart === "error") {
-			return;
+			error({
+				statusCode: 500
+			})
+			return {};
 		}
 
 		const type = (params.chart ?? "total-vaccinated") as DataSourceType;
@@ -55,7 +60,7 @@ export default class Home extends Vue {
 	private type!: DataSourceType;
 	private populationData!: IPopulationType[];
 	private transformedData!: Map<string, ChartData>;
-	private isLoading: boolean = true;
+	private isLoading: boolean = false;
 
 	// Initiate show/hide states
 	private showTotalVaccinatedChart = false;
@@ -64,7 +69,8 @@ export default class Home extends Vue {
 
 	mounted() {
 		(async (type) => {
-			// Transform
+			this.isLoading = true;
+
 			if(type === DataSourceType.POPULATION) {
 				this.transformedData = transformRawData(type, this.populationData);
 			} else {

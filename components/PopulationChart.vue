@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { BarChart, PieChart } from "vue-chart-3";
 import { ChartData } from "chart.js";
+import { BarChart, PieChart } from "vue-chart-3";
+import { Component, Prop, Vue } from "nuxt-property-decorator";
 import { PopulationChartVariants } from "~/common/custom-typings";
 
 @Component({

@@ -8,7 +8,7 @@
 <script lang="ts">
 import { ChartData } from "chart.js";
 import { GChart } from "vue-google-charts";
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "nuxt-property-decorator";
 import { VaccinatedByStateChartVariants } from "~/common/custom-typings";
 
 @Component({

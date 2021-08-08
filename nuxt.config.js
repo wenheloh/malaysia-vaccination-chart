@@ -1,10 +1,11 @@
 const colors = require("vuetify/es5/util/colors").default;
 
 module.exports = {
+	target: "static",
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		// titleTemplate: '%s - malaysia-vaccination-graph',
-		title: process.env.PROJECT_NAME || "Malaysia Vaccination Graph",
+		title: process.env.PROJECT_NAME || "Malaysia Vaccination Chart",
 		htmlAttrs: {
 			lang: "en",
 		},
@@ -23,10 +24,6 @@ module.exports = {
 		],
 		link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
 	},
-
-	serverMiddleware: [
-		{ path: "/api", handler: "~/server-middleware/server.ts" },
-	],
 
 	// Global CSS: https://go.nuxtjs.dev/config-css
 	css: ["@/assets/common.scss"],
@@ -49,7 +46,7 @@ module.exports = {
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
-	modules: [],
+	modules: ["@nuxt/content"],
 
 	// Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
 	vuetify: {
@@ -73,8 +70,7 @@ module.exports = {
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {},
 	env: {
-		projectName: process.env.PROJECT_NAME || "Malaysia Vaccination Graph",
-		apiBaseUrl: process.env.API_BASE_URL || "http://localhost:3000/api",
+		projectName: process.env.PROJECT_NAME || "Malaysia Vaccination Chart",
 		googleMapKey: process.env.GOOGLE_MAP_API_KEY || "",
 	},
 };

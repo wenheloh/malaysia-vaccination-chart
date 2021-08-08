@@ -43,3 +43,16 @@ export const MalaysiaStateIsoCode = {
 	[MalaysiaState.WP_LABUAN]: "MY-15",
 	[MalaysiaState.WP_PUTRAJAYA]: "MY-16",
 };
+
+export const dataSourceUrl = {
+	[DataSourceType.POPULATION]:
+		"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/static/population.csv",
+	[DataSourceType.TOTAL_VACCINATED]:
+		"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/vaccination/vax_malaysia.csv",
+	[DataSourceType.VACCINATED_BY_STATE]:
+		"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/vaccination/vax_state.csv",
+	// [DataSourceType.TOTAL_REGISTERED]:
+	// 	"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/registration/vaxreg_malaysia.csv",
+	// [DataSourceType.REGISTERED_BY_STATE]:
+	// 	"https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/registration/vaxreg_state.csv",
+};

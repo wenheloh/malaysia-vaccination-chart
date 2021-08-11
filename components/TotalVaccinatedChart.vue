@@ -32,8 +32,8 @@ import { transformRawData } from "~/common/data-transformers";
 export default class LineChartComponent extends Vue {
 	@Prop()
 	private populationData!: IPopulationType[];
-	private transformedData!: Map<string, ChartData>;
-	private currentDataset = {};
+	private transformedData: Map<string, ChartData> = new Map<string, ChartData>();
+	private currentDataset!: ChartData;
 	private items: string[] = Object.values(TotalVaccinatedChartVariants);
 	private showBar: boolean = false;
 	private isLoaded: boolean = false;
@@ -61,7 +61,7 @@ export default class LineChartComponent extends Vue {
 		(async () => {
 			const rawData = await fetchData(DataSourceType.TOTAL_VACCINATED);
 			this.transformedData = transformRawData(DataSourceType.TOTAL_VACCINATED, rawData, { populationData: this.populationData });
-			this.currentDataset = this.transformedData.get(TotalVaccinatedChartVariants.DAILY_VACCINATED);
+			this.currentDataset = this.transformedData.get(TotalVaccinatedChartVariants.DAILY_VACCINATED) as ChartData;
 
 			this.isLoaded = true;
 		})()
@@ -69,7 +69,7 @@ export default class LineChartComponent extends Vue {
 
 	private updateChart(value: string) {
 		this.showBar = value === TotalVaccinatedChartVariants.VACCINATED_POPULATION;
-		this.currentDataset = this.transformedData.get(value);
+		this.currentDataset = this.transformedData.get(value) as ChartData;
 	}
 }
 </script>

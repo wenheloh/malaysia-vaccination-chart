@@ -16,6 +16,7 @@
 					:to="item.to"
 					router
 					exact
+					@click="onListItemClick"
 				>
 					<v-list-item-content>
 						<v-list-item-title v-text="item.title"/>
@@ -56,7 +57,7 @@ export default {
 		return {
 			clipped: false,
 			drawer: false,
-			fixed: false,
+			fixed: true,
 			items: Object.keys(DataSourceType).map(key => ({
 				title: key.toLowerCase().split("_").reduce((result, current) => result += `${current.charAt(0).toUpperCase()}${current.substring(1)} `, "").trim(),
 				to: DataSourceType[key]
@@ -66,6 +67,11 @@ export default {
 			rightDrawer: false,
 			title: process.env.projectName,
 			disableResizeWatcher: true
+		}
+	},
+	methods: {
+		onListItemClick() {
+			this.drawer = !this.drawer
 		}
 	}
 }

@@ -1,6 +1,6 @@
 export enum TotalVaccinatedChartVariants {
-	CUMULATIVE_VACCINATED = "Cumulative vaccinated",
 	DAILY_VACCINATED = "Daily vaccinated",
+	CUMULATIVE_VACCINATED = "Cumulative vaccinated",
 	VACCINATED_POPULATION = "Vaccinated Population",
 }
 

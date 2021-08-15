@@ -1,30 +1,42 @@
+import dayjs from "dayjs";
 import {
 	IPopulationType,
 	TotalVaccinatedChartVariants,
 	ITotalVaccinatedType,
 } from "~/common/custom-typings";
 import { ChartData } from "chart.js";
+import { IPayload } from "~/common/data-transformers/index";
 
 export const transformTotalVaccinatedRawData = (
 	rawData: ITotalVaccinatedType[],
-	{ populationData }: { populationData: IPopulationType[] }
+	payload: IPayload
 ): Map<string, ChartData> => {
+	const { populationData, startDate, endDate } = payload;
+
+	const dayJsStartDate = dayjs(startDate);
+	const dayJsEndDate = dayjs(endDate);
+
+	const filteredRawData = rawData.filter(data => {
+		const currentDateDate = dayjs(data.date);
+		return currentDateDate >= dayJsStartDate && currentDateDate <= dayJsEndDate;
+	} );
+
 	return new Map<string, ChartData>([
 		[
 			TotalVaccinatedChartVariants.CUMULATIVE_VACCINATED,
 			{
-				labels: rawData.map(data => data.date),
+				labels: filteredRawData.map(data => data.date),
 				datasets: [
 					{
 						label: "Dose 1 Cumulative",
-						data: rawData.map(data => parseInt(data.dose1_cumul)),
+						data: filteredRawData.map(data => parseInt(data.dose1_cumul)),
 						backgroundColor: "#90caf9",
 						borderColor: "#5c6bc0",
 						tension: 0.1,
 					},
 					{
 						label: "Dose 2 Cumulative",
-						data: rawData.map(data => parseInt(data.dose2_cumul)),
+						data: filteredRawData.map(data => parseInt(data.dose2_cumul)),
 						backgroundColor: "#dcedc8",
 						borderColor: "#dcedc8",
 						tension: 0.1,
@@ -35,18 +47,18 @@ export const transformTotalVaccinatedRawData = (
 		[
 			TotalVaccinatedChartVariants.DAILY_VACCINATED,
 			{
-				labels: rawData.map(data => data.date),
+				labels: filteredRawData.map(data => data.date),
 				datasets: [
 					{
 						label: "Dose 1 Daily",
-						data: rawData.map(data => parseInt(data.dose1_daily)),
+						data: filteredRawData.map(data => parseInt(data.dose1_daily)),
 						backgroundColor: "#90caf9",
 						borderColor: "#5c6bc0",
 						tension: 0.1,
 					},
 					{
 						label: "Dose 2 Daily",
-						data: rawData.map(data => parseInt(data.dose2_daily)),
+						data: filteredRawData.map(data => parseInt(data.dose2_daily)),
 						backgroundColor: "#dcedc8",
 						borderColor: "#dcedc8",
 						tension: 0.1,

@@ -13,6 +13,7 @@
 					:initial-date="startDate"
 					:get-allowed-dates="getStartDateAllowedDates"
 					@startDateChanged="onStartDateChanged"
+					v-if="!showBar"
 				/>
 			</v-col>
 			<v-col>
@@ -21,6 +22,7 @@
 					:initial-date="endDate"
 					:get-allowed-dates="getEndDateAllowedDates"
 					@endDateChanged="onEndDateChanged"
+					v-if="!showBar"
 				/>
 			</v-col>
 		</v-row>
@@ -68,7 +70,7 @@ export default class LineChartComponent extends Vue {
 	private variants: string[] = Object.values(TotalVaccinatedChartVariants);
 	private selectedVariant: TotalVaccinatedChartVariants = TotalVaccinatedChartVariants.DAILY_VACCINATED;
 	private startDate: string = dayjs().add(-10, "day").format("YYYY-MM-DD");
-	private endDate: string = dayjs().format("YYYY-MM-DD");
+	private endDate: string = dayjs().add(-1, "day").format("YYYY-MM-DD");
 
 	// Flags
 	private showBar: boolean = false;

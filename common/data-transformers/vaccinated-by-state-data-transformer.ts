@@ -29,8 +29,8 @@ const generateCumulativeAndDailyData = (rawData: IVaccinatedByStateType[]) => {
 		const filteredRawData = rawData.filter(data => data.state === state);
 		transformedData.push([
 			generateGChartStateObject(filteredRawData[0].state) as any,
-			parseFloat(filteredRawData[filteredRawData.length - 1].total_daily),
-			parseFloat(filteredRawData[filteredRawData.length - 1].total_cumul),
+			parseFloat(filteredRawData[filteredRawData.length - 1].cumul_partial),
+			parseFloat(filteredRawData[filteredRawData.length - 1].cumul_full),
 		]);
 	});
 
@@ -62,7 +62,7 @@ const generateVaccinatedPopulationByState = (
 	populationData: IPopulationType[]
 ) => {
 	const totalFullyVaccinated = parseFloat(
-		filteredRawData[filteredRawData.length - 1].dose2_cumul
+		filteredRawData[filteredRawData.length - 1].cumul_full
 	);
 
 	const populationByState = parseFloat(

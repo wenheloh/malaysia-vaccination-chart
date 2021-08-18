@@ -29,14 +29,14 @@ export const transformTotalVaccinatedRawData = (
 				datasets: [
 					{
 						label: "Dose 1 Cumulative",
-						data: filteredRawData.map(data => parseInt(data.dose1_cumul)),
+						data: filteredRawData.map(data => parseInt(data.cumul_partial)),
 						backgroundColor: "#90caf9",
 						borderColor: "#5c6bc0",
 						tension: 0.1,
 					},
 					{
 						label: "Dose 2 Cumulative",
-						data: filteredRawData.map(data => parseInt(data.dose2_cumul)),
+						data: filteredRawData.map(data => parseInt(data.cumul_full)),
 						backgroundColor: "#dcedc8",
 						borderColor: "#dcedc8",
 						tension: 0.1,
@@ -51,14 +51,14 @@ export const transformTotalVaccinatedRawData = (
 				datasets: [
 					{
 						label: "Dose 1 Daily",
-						data: filteredRawData.map(data => parseInt(data.dose1_daily)),
+						data: filteredRawData.map(data => parseInt(data.daily_partial)),
 						backgroundColor: "#90caf9",
 						borderColor: "#5c6bc0",
 						tension: 0.1,
 					},
 					{
 						label: "Dose 2 Daily",
-						data: filteredRawData.map(data => parseInt(data.dose2_daily)),
+						data: filteredRawData.map(data => parseInt(data.daily_full)),
 						backgroundColor: "#dcedc8",
 						borderColor: "#dcedc8",
 						tension: 0.1,
@@ -78,11 +78,11 @@ export const transformTotalVaccinatedRawData = (
 						data: [
 							getVaccinatedPercentage(
 								populationData,
-								rawData[rawData.length - 1].dose1_cumul
+								rawData[rawData.length - 1].cumul_partial
 							),
 							getVaccinatedPercentage(
 								populationData,
-								rawData[rawData.length - 1].dose2_cumul
+								rawData[rawData.length - 1].cumul_full
 							),
 						],
 						backgroundColor: ["#90caf9", "#dcedc8"],
